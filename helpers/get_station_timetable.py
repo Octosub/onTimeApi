@@ -3,10 +3,13 @@ import os
 from dotenv import load_dotenv
 from datetime import datetime
 
+load_dotenv()
+api_key = os.getenv("API_KEY")
+
 def get_station_timetable(station_name: str, direction: str):
 
     #Get station ID from station_name
-    response = requests.get(f"https://api.odpt.org/api/v4/odpt:Station?dc:title={station_name}&acl:consumerKey=")
+    response = requests.get(f"https://api.odpt.org/api/v4/odpt:Station?dc:title={station_name}&acl:consumerKey={api_key}")
 
     if response.status_code == 200:
         response  = response.json()[0]
@@ -15,7 +18,7 @@ def get_station_timetable(station_name: str, direction: str):
         return {"error": "Invalid response for station name"}
 
     #Get station timetable from station_id
-    timetable_response = requests.get(f"https://api.odpt.org/api/v4/odpt:StationTimetable?odpt:station={station_id}&acl:consumerKey=")
+    timetable_response = requests.get(f"https://api.odpt.org/api/v4/odpt:StationTimetable?odpt:station={station_id}&acl:consumerKey={api_key}")
 
     if timetable_response.status_code == 200:
         timetable_response = timetable_response.json()
