@@ -1,0 +1,17 @@
+# Ignore the .env file
+.env
+
+# Other common ignores
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+.DS_Store
+.venv/
+env/
+venv/
+.idea/
+.vscode/
+*.log

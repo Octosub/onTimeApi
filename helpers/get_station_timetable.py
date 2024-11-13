@@ -1,4 +1,6 @@
 import requests
+import os
+from dotenv import load_dotenv
 from datetime import datetime
 
 def get_station_timetable(station_name: str, direction: str):
